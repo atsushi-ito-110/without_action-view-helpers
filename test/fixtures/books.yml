@@ -3,7 +3,9 @@
 one:
   title: MyString
   price: 1
+  description: MyText
 
 two:
   title: MyString
   price: 1
+  description: MyText
