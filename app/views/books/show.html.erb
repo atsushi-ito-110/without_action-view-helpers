@@ -1,0 +1,21 @@
+<h1>Books#show</h1>
+
+<div>
+
+  <div>
+    title: <%= @book.title %>
+  </div>
+
+  <div>
+    price: <%= @book.price %>
+  </div>
+
+  <div>
+    description: <%= @book.description %>
+  </div>
+
+  <div>
+    <%= link_to 'Edit', edit_book_path(@book.id) %>
+  </div>
+
+</div>
