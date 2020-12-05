@@ -1,0 +1,57 @@
+
+<form action="/books<%= book.persisted? ? "/#{book.id}" : '' %>" accept-charset="UTF-8" method="post">
+  <input name="utf8" type="hidden" value="✓">
+  <% if book.persisted? %>
+    <input type="hidden" name="_method" value="patch">
+  <%end %>
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>" >
+  <% if book.errors.any? %>
+    <div>
+      エラーが発生しています
+    </div>
+  <% end %>
+
+  <% model_name = book.class.to_s.downcase %>
+  <div>
+    <% column_name = 'title'%>
+    <label for="<%= [model_name, column_name].join("_") %>">
+      <%= column_name.camelize %>
+    </label>
+    <input
+      type="text" value="<%= @book.title %>"
+      name="<%= "#{model_name}[#{column_name}]" %>"
+      id="<%= [model_name, column_name].join("_") %>"
+    >
+  </div>
+
+</form>
+
+
+<%= form_with model: book, local: true do |f| %>
+
+  <% if book.errors.any? %>
+    <div>
+      エラーが発生しています
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div>
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+  </div>
+
+  <div>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+  </div>
+
+  <div>
+    <%= f.submit :submit %>
+  </div>
+
+<% end %>
